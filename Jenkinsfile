@@ -4,7 +4,7 @@ pipeline {
   	stage('Maven Install') {
     	agent {
       	docker {
-        	image 'maven:3.5.0'
+        	image 'maven:3.6.3'
         }
       }
       steps {
@@ -22,7 +22,7 @@ pipeline {
       steps {
       	withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
         	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh 'docker push sathishbob/spring-petclinic:latest'
+          sh 'docker push gauravkrise/spring-petclinic:latest'
         }
       }
     }
